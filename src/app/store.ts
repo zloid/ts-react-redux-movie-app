@@ -1,10 +1,8 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import DefaultLookReducer from '../features/defaultLook/defaultLookSlice';
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+  reducer: DefaultLookReducer
 });
 
 export type RootState = ReturnType<typeof store.getState>;
