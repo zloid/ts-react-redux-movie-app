@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { DefaultScreen } from './components/DefaultScreen/DefaultScreen'
 import { ActionTab } from './components/ActionTab/ActionTab'
 import { AnimationTab } from './components/AnimationTab/AnimationTab'
+import { MovieInfo } from './components/MovieInfo/MovieInfo'
 
 const App: React.FC = () => {
     return (
@@ -14,15 +15,10 @@ const App: React.FC = () => {
             <Router>
                 <MainNavbar />
                 <Switch>
-                    <Route exact path="/">
-                        <DefaultScreen />
-                    </Route>
-                    <Route path="/actions">
-                        <ActionTab />
-                    </Route>
-                    <Route path="/animation">
-                        <AnimationTab />
-                    </Route>
+                    <Route exact path="/" component={DefaultScreen} />
+                    <Route path="/actions" component={ActionTab} />
+                    <Route path="/animation" component={AnimationTab} />
+                    <Route path="/info" component={MovieInfo} />
                 </Switch>
             </Router>
         </Container>

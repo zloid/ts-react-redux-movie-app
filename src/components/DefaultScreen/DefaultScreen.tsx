@@ -20,6 +20,8 @@ export const DefaultScreen: React.FC = () => {
         <ThumbnailOfMovie
             key={poster.id}
             thumbnail={picDefaultPath + poster.poster_path}
+            alt={poster.original_title}
+            id={poster.id}
         />
     ))
 

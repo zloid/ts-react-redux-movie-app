@@ -1,14 +1,14 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import DefaultLookReducer from '../features/defaultLook/defaultLookSlice';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
+import rootReducer from './rootReducer'
 
 export const store = configureStore({
-  reducer: DefaultLookReducer
-});
+    reducer: rootReducer,
+})
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>
 export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+    ReturnType,
+    RootState,
+    unknown,
+    Action<string>
+>

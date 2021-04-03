@@ -19,21 +19,26 @@ const apiMovieByGenre: Array<{
 }> = []
 
 type SliceState = {
+    idOfCurrentMovie: number
     isDefaultFilmsLoading: boolean
     defaultFilmsData: typeof apiMovieByGenre
-    picDefaultPath: string
+    isTimeForRedirectToSingleMovieItem: boolean
 }
 
 const initialState: SliceState = {
+    idOfCurrentMovie: 0,
     isDefaultFilmsLoading: false,
     defaultFilmsData: apiMovieByGenre,
-    picDefaultPath: 'https://image.tmdb.org/t/p/w342/',
+    isTimeForRedirectToSingleMovieItem: false,
 }
 
-const defaulLookSlice = createSlice({
-    name: 'defaultLook',
+const singleMovieDetailsSlice = createSlice({
+    name: 'singleMovieDetails',
     initialState,
     reducers: {
+        getIdOfMovie(state, action: PayloadAction<number>) {
+            state.idOfCurrentMovie = action.payload
+        },
         getDefaultFilms(state) {
             state.isDefaultFilmsLoading = true
         },
@@ -43,80 +48,49 @@ const defaulLookSlice = createSlice({
         ) {
             state.isDefaultFilmsLoading = false
 
-            // state.defaultFilmsData = action.payload.poster_path
             state.defaultFilmsData = action.payload
         },
         getDefaultFilmsFailure(state) {
             state.isDefaultFilmsLoading = false
         },
+        doRedirectToSingleMovieItem(state, action: PayloadAction<boolean>) {
+            state.isTimeForRedirectToSingleMovieItem = action.payload
+        },
     },
 })
 
 export const {
+    getIdOfMovie,
     getDefaultFilms,
     getDefaultFilmsSuccess,
     getDefaultFilmsFailure,
-} = defaulLookSlice.actions
+    doRedirectToSingleMovieItem,
+} = singleMovieDetailsSlice.actions
 
-export default defaulLookSlice.reducer
+export default singleMovieDetailsSlice.reducer
 
-export const fetchDefaultFilms = (genreId?: string): AppThunk => async (
+export const fetchDefaultFilms = (genreId?: number): AppThunk => async (
     dispatch
 ) => {
     try {
         dispatch(getDefaultFilms())
-        console.log(genreId)
-        const response = await fetch(`http://localhost:8001/${genreId}`)
+
+        const response = await fetch(`http://localhost:8001/actions`)
 
         const listOfFilms = await response.json()
 
-        dispatch(getDefaultFilmsSuccess(listOfFilms))
+        dispatch(
+            getDefaultFilmsSuccess(
+                listOfFilms.find((ob: { id: number }) => ob.id === genreId)
+            )
+        )
+
+        dispatch(doRedirectToSingleMovieItem(true))
     } catch (error) {
         dispatch(getDefaultFilmsFailure())
         alert('Please reload page! ' + error)
     }
 }
 
-export const selectDefaultFilmsData = (state: RootState) =>
-    state.defaultLookReducer.defaultFilmsData
-
-export const selectDefaultPathToPic = (state: RootState) =>
-    state.defaultLookReducer.picDefaultPath
-
-/* action 28
-
-animated 16
-
-documentary 99
-
-drama 18
-
-family 10751
-
-fantasy 14
-
-history 36
-
-comedy 35
-
-war 10752
-
-crime 80
-
-music 10402
-
-mystery 9648
-
-romance 10749
-
-sci fi 878
-
-horror 27
-
-TV movie 10770
-
-thriller 53
-
-western 37
-
-adventure 12 */
+export const selectTimeForRedirectToSingleMovieItem = (state: RootState) =>
+    state.singleMovieDetailsReducer.isTimeForRedirectToSingleMovieItem
