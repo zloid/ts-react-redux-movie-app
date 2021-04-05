@@ -1,12 +1,13 @@
 import React from 'react'
-import { Image } from 'react-bootstrap'
+import { Image, Button, Badge } from 'react-bootstrap'
 import {
     getIdOfMovie,
     fetchDefaultFilms,
-    selectTimeForRedirectToSingleMovieItem,
+    // selectTimeForRedirectToSingleMovieItem,
 } from '../../features/singleMovieDetails/singleMovieDetailsSlice'
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+// import { Redirect } from 'react-router-dom'
+import { MoreInfo, Info } from './style'
 
 export const ThumbnailOfMovie: React.FC<{
     thumbnail: string
@@ -14,24 +15,34 @@ export const ThumbnailOfMovie: React.FC<{
     id: number
 }> = ({ thumbnail, alt, id }) => {
     const dispatch = useDispatch()
-    const timeForRedirectToSingleMovieItem = useSelector(
-        selectTimeForRedirectToSingleMovieItem
-    )
+    // const timeForRedirectToSingleMovieItem = useSelector(
+    // selectTimeForRedirectToSingleMovieItem
+    // )
 
     return (
-        <>
-            {timeForRedirectToSingleMovieItem && <Redirect to="/info" />}
-            {/* {<Redirect  to="/info" />} */}
-            <Image
-                thumbnail
-                src={thumbnail}
-                alt={alt}
-                width="150"
-                onClick={() => {
-                    dispatch(getIdOfMovie(id))
-                    dispatch(fetchDefaultFilms(id))
-                }}
-            />
-        </>
+        <span>
+            <a href={`movie-more-info?id:${id}`}>
+                <Image thumbnail src={thumbnail} alt={alt} width="150" />
+
+                <MoreInfo>
+                    {/* <a href={`movie-more-info?id:${id}`}> */}
+                    <Button size="sm" variant="success">
+                        more info
+                    </Button>
+                </MoreInfo>
+            </a>
+
+            <Info>
+                <Badge
+                    variant="warning"
+                    onClick={() => {
+                        dispatch(getIdOfMovie(id))
+                        dispatch(fetchDefaultFilms(id))
+                    }}
+                >
+                    info
+                </Badge>
+            </Info>
+        </span>
     )
 }
