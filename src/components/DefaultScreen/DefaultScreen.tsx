@@ -14,12 +14,12 @@ export const DefaultScreen: React.FC = () => {
 
     const dispatch = useDispatch()
     const defaultFilmsData = useSelector(selectDefaultFilmsData)
-    const picDefaultPath = useSelector(selectDefaultPathToPic)
+    const picStorageDefaultPath = useSelector(selectDefaultPathToPic)
 
     const allPosters = defaultFilmsData.map((poster) => (
         <ThumbnailOfMovie
             key={poster.id}
-            thumbnail={picDefaultPath + poster.poster_path}
+            thumbnail={picStorageDefaultPath + poster.poster_path}
             alt={poster.original_title}
             id={poster.id}
         />

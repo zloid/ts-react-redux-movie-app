@@ -68,13 +68,13 @@ const apiMovieById: {
 type SliceState = {
     isMovieMoreInfoLoading: boolean
     movieMoreInfoData: typeof apiMovieById
-    picDefaultPath: string
+    picStorageDefaultPath: string
 }
 
 const initialState: SliceState = {
     isMovieMoreInfoLoading: false,
     movieMoreInfoData: apiMovieById,
-    picDefaultPath: 'https://image.tmdb.org/t/p/w342',
+    picStorageDefaultPath: 'https://image.tmdb.org/t/p/w342',
 }
 
 const movieMoreInfoSlice = createSlice({
@@ -128,4 +128,4 @@ export const selectmovieMoreInfoData = (state: RootState) =>
     state.movieMoreInfoReducer.movieMoreInfoData
 
 export const selectDefaultPathToPic = (state: RootState) =>
-    state.movieMoreInfoReducer.picDefaultPath
+    state.movieMoreInfoReducer.picStorageDefaultPath

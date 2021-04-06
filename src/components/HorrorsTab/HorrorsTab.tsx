@@ -15,9 +15,9 @@ export const animationTab: React.FC = () => {
     const defaultFilmsData = useSelector(selectDefaultFilmsData)
 
     // const pic = 'https://image.tmdb.org/t/p/w342/' + defaultFilmsData
-    const picDefaultPath = 'https://image.tmdb.org/t/p/w342/'
+    const picStorageDefaultPath = 'https://image.tmdb.org/t/p/w342/'
     const mappedData = defaultFilmsData.map(
-        (e) => picDefaultPath + e.poster_path
+        (e) => picStorageDefaultPath + e.poster_path
     )
 
     const allPosters = mappedData.map((e, i) => (

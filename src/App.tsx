@@ -14,14 +14,12 @@ import { ActionTab } from './components/ActionTab/ActionTab'
 import { AnimationTab } from './components/AnimationTab/AnimationTab'
 import { MovieInfo } from './components/MovieInfo/MovieInfo'
 import { MovieMoreInfo } from './components/MovieMoreInfo/MovieMoreInfo'
+import { SearchBox } from './components/SearchBox/SearchResult'
+import { SearchInput } from './components/SearchBox/SearchInput'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import {
-    getIdOfMovie,
-    fetchDefaultFilms,
-    selectTimeForRedirectToSingleMovieItem,
-} from './features/singleMovieDetails/singleMovieDetailsSlice'
+import { selectTimeForRedirectToSingleMovieItem } from './features/singleMovieDetails/singleMovieDetailsSlice'
 
 const App: React.FC = () => {
     const timeForRedirectToSingleMovieItem = useSelector(
@@ -34,12 +32,14 @@ const App: React.FC = () => {
                     <Redirect push={true} to="/info" />
                 )}
                 <MainNavbar />
+                <SearchInput />
                 <Switch>
                     <Route exact path="/" component={DefaultScreen} />
                     <Route path="/actions" component={ActionTab} />
                     <Route path="/animation" component={AnimationTab} />
                     <Route path="/info" component={MovieInfo} />
                     <Route path="/movie-more-info" component={MovieMoreInfo} />
+                    <Route path="/search" component={SearchBox} />
                 </Switch>
             </Router>
         </Container>

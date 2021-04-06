@@ -1,12 +1,10 @@
 import React from 'react'
-import { Image, Button, Badge } from 'react-bootstrap'
+import { Image, Button, Badge, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import {
     getIdOfMovie,
     fetchDefaultFilms,
-    // selectTimeForRedirectToSingleMovieItem,
 } from '../../features/singleMovieDetails/singleMovieDetailsSlice'
 import { useDispatch } from 'react-redux'
-// import { Redirect } from 'react-router-dom'
 import { MoreInfo, Info } from './style'
 
 export const ThumbnailOfMovie: React.FC<{
@@ -15,9 +13,6 @@ export const ThumbnailOfMovie: React.FC<{
     id: number
 }> = ({ thumbnail, alt, id }) => {
     const dispatch = useDispatch()
-    // const timeForRedirectToSingleMovieItem = useSelector(
-    // selectTimeForRedirectToSingleMovieItem
-    // )
 
     return (
         <span>
@@ -25,7 +20,6 @@ export const ThumbnailOfMovie: React.FC<{
                 <Image thumbnail src={thumbnail} alt={alt} width="150" />
 
                 <MoreInfo>
-                    {/* <a href={`movie-more-info?id:${id}`}> */}
                     <Button size="sm" variant="success">
                         more info
                     </Button>
@@ -33,15 +27,29 @@ export const ThumbnailOfMovie: React.FC<{
             </a>
 
             <Info>
-                <Badge
-                    variant="warning"
-                    onClick={() => {
-                        dispatch(getIdOfMovie(id))
-                        dispatch(fetchDefaultFilms(id))
-                    }}
+                <OverlayTrigger
+                    placement="auto"
+                    overlay={
+                        <Tooltip
+                            id="tooltip-disabled"
+                            style={{ backgroundColor: 'tomato' }}
+                        >
+                            <Badge variant="secondary">id</Badge> {id}
+                            <br />
+                            <Badge variant="secondary">alt</Badge> {alt}
+                        </Tooltip>
+                    }
                 >
-                    info
-                </Badge>
+                    <Badge
+                        variant="warning"
+                        onClick={() => {
+                            dispatch(getIdOfMovie(id))
+                            dispatch(fetchDefaultFilms(id))
+                        }}
+                    >
+                        info
+                    </Badge>
+                </OverlayTrigger>
             </Info>
         </span>
     )

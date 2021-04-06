@@ -21,13 +21,13 @@ const apiMovieByGenre: Array<{
 type SliceState = {
     isDefaultFilmsLoading: boolean
     defaultFilmsData: typeof apiMovieByGenre
-    picDefaultPath: string
+    picStorageDefaultPath: string
 }
 
 const initialState: SliceState = {
     isDefaultFilmsLoading: false,
     defaultFilmsData: apiMovieByGenre,
-    picDefaultPath: 'https://image.tmdb.org/t/p/w342/',
+    picStorageDefaultPath: 'https://image.tmdb.org/t/p/w342/',
 }
 
 const defaulLookSlice = createSlice({
@@ -43,7 +43,6 @@ const defaulLookSlice = createSlice({
         ) {
             state.isDefaultFilmsLoading = false
 
-            // state.defaultFilmsData = action.payload.poster_path
             state.defaultFilmsData = action.payload
         },
         getDefaultFilmsFailure(state) {
@@ -81,7 +80,7 @@ export const selectDefaultFilmsData = (state: RootState) =>
     state.defaultLookReducer.defaultFilmsData
 
 export const selectDefaultPathToPic = (state: RootState) =>
-    state.defaultLookReducer.picDefaultPath
+    state.defaultLookReducer.picStorageDefaultPath
 
 /* action 28
 
