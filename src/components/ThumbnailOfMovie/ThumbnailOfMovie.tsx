@@ -17,7 +17,16 @@ export const ThumbnailOfMovie: React.FC<{
     return (
         <span>
             <a href={`movie-more-info?id:${id}`}>
-                <Image thumbnail src={thumbnail} alt={alt} width="150" />
+                <Image
+                    thumbnail
+                    src={
+                        /null/gi.test(thumbnail)
+                            ? 'https://topmeaning.com/english/images/img/EN/m/missing.jpg'
+                            : thumbnail
+                    }
+                    alt={alt}
+                    width="150"
+                />
 
                 <MoreInfo>
                     <Button size="sm" variant="success">
@@ -34,9 +43,8 @@ export const ThumbnailOfMovie: React.FC<{
                             id="tooltip-disabled"
                             style={{ backgroundColor: 'tomato' }}
                         >
-                            <Badge variant="secondary">id</Badge> {id}
+                            <Badge variant="secondary">title </Badge> {alt}
                             <br />
-                            <Badge variant="secondary">alt</Badge> {alt}
                         </Tooltip>
                     }
                 >

@@ -64,11 +64,12 @@ export const fetchMoviesBySearchBox = (movieName?: string): AppThunk => async (
 ) => {
     try {
         dispatch(getMoviesBySearchBox())
-        const response = await fetch(`http://localhost:8001/${movieName}`)
+        // const response = await fetch(`http://localhost:8001/${movieName}`)
+        const response = await fetch()
 
         const listOfFilms = await response.json()
 
-        dispatch(getMoviesBySearchBoxSuccess(listOfFilms))
+        dispatch(getMoviesBySearchBoxSuccess(listOfFilms.results))
     } catch (error) {
         dispatch(getMoviesBySearchBoxFailure())
         alert('Please reload page! ' + error)
