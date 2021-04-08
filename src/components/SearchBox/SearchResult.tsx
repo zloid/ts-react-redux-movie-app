@@ -17,19 +17,9 @@ export const SearchBox: React.FC = () => {
     const location = useLocation()
     const locationSearch = location.search.split(':')[1]
 
-    console.log('SearBox: ', location)
-
-    // const path = location.pathname
-    // const store = window.localStorage
-
-    // if (locationSearch !== undefined && locationSearch !== null) {
-    // }
-
     useEffect(() => {
         dispatch(fetchMoviesBySearchBox(locationSearch))
     }, [])
-
-    // dispatch(fetchMoviesBySearchBox(locationSearch))
 
     const allPosters = moviesBySearchBoxData.map((poster) => (
         <ThumbnailOfMovie
@@ -37,14 +27,14 @@ export const SearchBox: React.FC = () => {
             thumbnail={defaultPathToPic + poster.poster_path}
             alt={poster.original_title}
             id={poster.id}
+            overview={poster.overview}
+            vote_average={poster.vote_average}
         />
     ))
 
     return (
         <>
-            <p>
-                <u>Search results:</u>
-            </p>
+            <h1>Search results</h1>
 
             {allPosters}
         </>

@@ -11,14 +11,15 @@ export const ThumbnailOfMovie: React.FC<{
     thumbnail: string
     alt: string
     id: number
-}> = ({ thumbnail, alt, id }) => {
+    overview: string
+    vote_average: number
+}> = ({ thumbnail, alt, id, overview, vote_average }) => {
     const dispatch = useDispatch()
 
     return (
         <span>
             <a href={`movie-more-info?id:${id}`}>
                 <Image
-                    thumbnail
                     src={
                         /null/gi.test(thumbnail)
                             ? 'https://topmeaning.com/english/images/img/EN/m/missing.jpg'
@@ -26,6 +27,7 @@ export const ThumbnailOfMovie: React.FC<{
                     }
                     alt={alt}
                     width="150"
+                    thumbnail={true}
                 />
 
                 <MoreInfo>
@@ -43,7 +45,14 @@ export const ThumbnailOfMovie: React.FC<{
                             id="tooltip-disabled"
                             style={{ backgroundColor: 'tomato' }}
                         >
-                            <Badge variant="secondary">title </Badge> {alt}
+                            <Badge variant="success">title </Badge> {alt}
+                            <br />
+                            <Badge variant="warning">rating </Badge>{' '}
+                            {vote_average}
+                            <br />
+                            <br />
+                            <Badge variant="primary">overview </Badge>{' '}
+                            {overview}
                             <br />
                         </Tooltip>
                     }

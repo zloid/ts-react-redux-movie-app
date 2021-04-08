@@ -1,29 +1,23 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-    fetchDefaultFilms,
-    selectDefaultFilmsData,
-    selectDefaultPathToPic,
-} from '../../features/defaultLook/defaultLookSlice'
-import { ThumbnailOfMovie } from '../ThumbnailOfMovie/ThumbnailOfMovie'
+import { useDispatch } from 'react-redux'
+import { fetchDefaultFilms } from '../../features/defaultLook/defaultLookSlice'
+import { MovieItemsByGenre } from '../MovieItemsByGenre/MovieItemsByGenre'
+
+import { useLocationPathname } from '../../utils/useLocationPathname'
 
 export const ActionTab: React.FC = () => {
+    const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(fetchDefaultFilms('actions'))
     }, [])
 
-    const dispatch = useDispatch()
-    const defaultFilmsData = useSelector(selectDefaultFilmsData)
-    const picStorageDefaultPath = useSelector(selectDefaultPathToPic)
+    const preparedLocation = useLocationPathname()
 
-    const allPosters = defaultFilmsData.map((poster) => (
-        <ThumbnailOfMovie
-            key={poster.id}
-            thumbnail={picStorageDefaultPath + poster.poster_path}
-            alt={poster.original_title}
-            id={poster.id}
-        />
-    ))
-
-    return <>{allPosters}</>
+    return (
+        <>
+            <h1>{preparedLocation}</h1>
+            <MovieItemsByGenre />
+        </>
+    )
 }

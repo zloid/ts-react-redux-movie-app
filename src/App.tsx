@@ -21,6 +21,9 @@ import { useSelector } from 'react-redux'
 
 import { selectTimeForRedirectToSingleMovieItem } from './features/singleMovieDetails/singleMovieDetailsSlice'
 
+import { HidingSearchOnMobile } from './style'
+import { DefaultGenreTab } from './components/DefaultGenreTab/DefaultGenreTab'
+
 const App: React.FC = () => {
     const timeForRedirectToSingleMovieItem = useSelector(
         selectTimeForRedirectToSingleMovieItem
@@ -32,7 +35,9 @@ const App: React.FC = () => {
                     <Redirect push={true} to="/info" />
                 )}
                 <MainNavbar />
-                <SearchInput />
+                <HidingSearchOnMobile>
+                    <SearchInput />
+                </HidingSearchOnMobile>
                 <Switch>
                     <Route exact path="/" component={DefaultScreen} />
                     <Route path="/actions" component={ActionTab} />
@@ -40,6 +45,12 @@ const App: React.FC = () => {
                     <Route path="/info" component={MovieInfo} />
                     <Route path="/movie-more-info" component={MovieMoreInfo} />
                     <Route path="/search" component={SearchBox} />
+                    <Route path="/test">
+                        <DefaultGenreTab genre="actions" />
+                    </Route>
+                    <Route path="/test-2">
+                        <DefaultGenreTab genre="alien" />
+                    </Route>
                 </Switch>
             </Router>
         </Container>

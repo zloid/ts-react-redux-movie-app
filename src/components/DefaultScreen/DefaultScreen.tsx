@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-    fetchDefaultFilms,
-    selectDefaultFilmsData,
-    selectDefaultPathToPic,
-} from '../../features/defaultLook/defaultLookSlice'
-import { ThumbnailOfMovie } from '../ThumbnailOfMovie/ThumbnailOfMovie'
+import { useDispatch } from 'react-redux'
+import { fetchDefaultFilms } from '../../features/defaultLook/defaultLookSlice'
+import { MovieItemsByGenre } from '../MovieItemsByGenre/MovieItemsByGenre'
 
 export const DefaultScreen: React.FC = () => {
     useEffect(() => {
@@ -13,17 +9,11 @@ export const DefaultScreen: React.FC = () => {
     }, [])
 
     const dispatch = useDispatch()
-    const defaultFilmsData = useSelector(selectDefaultFilmsData)
-    const picStorageDefaultPath = useSelector(selectDefaultPathToPic)
 
-    const allPosters = defaultFilmsData.map((poster) => (
-        <ThumbnailOfMovie
-            key={poster.id}
-            thumbnail={picStorageDefaultPath + poster.poster_path}
-            alt={poster.original_title}
-            id={poster.id}
-        />
-    ))
-
-    return <>{allPosters}</>
+    return (
+        <>
+            <h1>Choose default movie or find your favorite</h1>
+            <MovieItemsByGenre />
+        </>
+    )
 }

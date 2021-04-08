@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation, useHistory, Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+import { useLocation, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { fetchMoviesBySearchBox } from '../../features/searchBox/searchBoxSlice'
+import { closeBurgerMenu } from '../../features/defaultLook/defaultLookSlice'
+
+import { StyledSearch } from './style'
 
 export const SearchInput: React.FC = () => {
     const [stateSearchInput, setStateSearchInput] = useState('')
@@ -17,17 +21,12 @@ export const SearchInput: React.FC = () => {
 
     let locationSearch: string
 
-    // if (regExpInfo.test(location.search)) {
-    //     locationSearch = location.search.split(':')[1]
-    // }
     locationSearch = location.search.split(':')[1]
+    if (/%20/g.test(locationSearch)) {
+        locationSearch = locationSearch.replace(/%20/g, ' ')
+    }
 
     useEffect(() => {
-        /* 
-        locationSearch !== undefined && locationSearch !== null
-            ? setStateSearchInput(locationSearch)
-            : setStateSearchInput('')
-             */
         if (regExpInfo.test(location.search)) {
             setStateSearchInput('')
         }
@@ -41,30 +40,18 @@ export const SearchInput: React.FC = () => {
 
     function handleKeyPress(keyPress: string) {
         if (keyPress === 'Enter') {
-            // dispatch(fetchMoviesBySearchBox(locationSearch))
-
             history.push(
                 stateSearchInput.trim()
                     ? `/search?request:${stateSearchInput}`
                     : '#no-results'
             )
-
-            // console.log(location)
-
-            // history.replace(`search`)
-
-            // locationSearch !== undefined &&
-            //     locationSearch !== null &&
-            // dispatch(fetchMoviesBySearchBox(locationSearch))
-            // dispatch(fetchMoviesBySearchBox(locationSearch))
+            dispatch(closeBurgerMenu())
         }
     }
 
-    // if (stateSearchInput === 'da') return <Link to="/"></Link>
-
     return (
         <div>
-            <input
+            <StyledSearch
                 type="text"
                 value={stateSearchInput}
                 onChange={(e) => setStateSearchInput(e.target.value)}
@@ -73,15 +60,10 @@ export const SearchInput: React.FC = () => {
                     handleKeyPress(e.key)
                 }}
             />
-            {/* <a
-                href={
-                    stateSearchInput.trim()
-                        ? `search?request:${stateSearchInput}`
-                        : '#no-results'
-                }
-            > */}
-            <button onClick={() => handleKeyPress('Enter')}>search</button>
-            {/* </a> */}
+
+            <Button variant="primary" onClick={() => handleKeyPress('Enter')}>
+                search
+            </Button>
         </div>
     )
 }

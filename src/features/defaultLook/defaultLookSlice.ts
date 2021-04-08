@@ -22,12 +22,14 @@ type SliceState = {
     isDefaultFilmsLoading: boolean
     defaultFilmsData: typeof apiMovieByGenre
     picStorageDefaultPath: string
+    isBurgerMenuOpen: boolean
 }
 
 const initialState: SliceState = {
     isDefaultFilmsLoading: false,
     defaultFilmsData: apiMovieByGenre,
     picStorageDefaultPath: 'https://image.tmdb.org/t/p/w342/',
+    isBurgerMenuOpen: false,
 }
 
 const defaulLookSlice = createSlice({
@@ -48,6 +50,12 @@ const defaulLookSlice = createSlice({
         getDefaultFilmsFailure(state) {
             state.isDefaultFilmsLoading = false
         },
+        openCloseBurgerMenu(state) {
+            state.isBurgerMenuOpen = !state.isBurgerMenuOpen
+        },
+        closeBurgerMenu(state) {
+            state.isBurgerMenuOpen = false
+        },
     },
 })
 
@@ -55,6 +63,8 @@ export const {
     getDefaultFilms,
     getDefaultFilmsSuccess,
     getDefaultFilmsFailure,
+    openCloseBurgerMenu,
+    closeBurgerMenu,
 } = defaulLookSlice.actions
 
 export default defaulLookSlice.reducer
@@ -81,6 +91,9 @@ export const selectDefaultFilmsData = (state: RootState) =>
 
 export const selectDefaultPathToPic = (state: RootState) =>
     state.defaultLookReducer.picStorageDefaultPath
+
+export const selectIsBurgerMenuOpen = (state: RootState) =>
+    state.defaultLookReducer.isBurgerMenuOpen
 
 /* action 28
 

@@ -5,12 +5,14 @@ import { MovieItemsByGenre } from '../MovieItemsByGenre/MovieItemsByGenre'
 
 import { useLocationPathname } from '../../utils/useLocationPathname'
 
-export const AnimationTab: React.FC = () => {
-    useEffect(() => {
-        dispatch(fetchDefaultFilms('animation'))
-    }, [])
-
+export const DefaultGenreTab: React.FC<{ genre: string }> = ({ genre }) => {
     const dispatch = useDispatch()
+
+    dispatch(fetchDefaultFilms(genre))
+
+    /* useEffect(() => {
+        dispatch(fetchDefaultFilms(genre))
+    }, []) */
 
     const preparedLocation = useLocationPathname()
 

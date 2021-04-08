@@ -44,19 +44,21 @@ export const HidingNavLink = styled.span`
     }
 `
 
-export const StyledLInk = styled.span`
+export const StyledLink = styled.span`
+    font-weight: bold;
     color: #fff;
     margin-left: 20px;
     padding: 4px;
     border: 1px solid tomato;
     border-radius: 4px;
+
+    @media (max-width: 990px) {
+        border: 1px solid papayawhip;
+    }
 `
 
 export const ToggleWrapper = styled.span`
     background: tomato;
     border-radius: 2px;
-    position: absolute;
-    right: 0;
-    margin-right: 50px;
-    /* margin-bottom: 16px; */
+    margin-bottom: 16px;
 `

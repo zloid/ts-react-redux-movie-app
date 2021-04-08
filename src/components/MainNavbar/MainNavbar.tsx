@@ -1,21 +1,18 @@
 import React from 'react'
-import { Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { openCloseBurgerMenu } from '../../features/defaultLook/defaultLookSlice'
 
-import { NavLink } from 'react-router-dom'
+import { Navbar } from 'react-bootstrap'
 
-import {
-    StyledBrand,
-    // PageName,
-    HidingNavLink,
-    StyledLInk,
-    ToggleWrapper,
-} from './style'
+import { MobileBurgerMenu } from '../MobileBurgerMenu/MobileBurgerMenu'
+
+import { StyledBrand, HidingNavLink, ToggleWrapper } from './style'
+import { NavLinks } from '../NavLinks/NavLinks'
 
 export const MainNavbar: React.FC = () => {
+    const dispatch = useDispatch()
     return (
         <>
-
-            
             {' '}
             <Navbar className="navbar-light" expand="lg" variant="light">
                 <Navbar.Brand href="/">
@@ -32,48 +29,18 @@ export const MainNavbar: React.FC = () => {
 
                 {/* BURGER MENU */}
                 <ToggleWrapper>
-                    <Navbar.Toggle />
+                    <Navbar.Toggle
+                        onClick={() => dispatch(openCloseBurgerMenu())}
+                    />
                 </ToggleWrapper>
-                {/* <Nav className="mr-auto">  */}
+
+                <MobileBurgerMenu />
+
                 <HidingNavLink>
-                    <Nav>
-                        <NavLink to="/actions">
-                            <StyledLInk>Actions</StyledLInk>
-                        </NavLink>
-                        {/*   */}
-                        <NavLink to="/animation">
-                            <StyledLInk>Animation</StyledLInk>
-                        </NavLink>
-                    </Nav>
+                    {/* <Nav className="mr-auto">  */}
+                    <NavLinks />
                 </HidingNavLink>
             </Navbar>
-
-
-
-            {/* 
-                        
-           <Navbar bg="light" expand="lg">
-  <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="actions">Link</NavLink>
-       
-    </Nav>
-                    <Form inline>
-                        <FormControl
-                            type="text"
-                            placeholder="Search"
-                            className="mr-sm-2"
-                        />
-                        <button>Search</button>
-                    </Form>
-                </Navbar.Collapse>
-            </Navbar>
-            
-            
-            */}
         </>
     )
 }
