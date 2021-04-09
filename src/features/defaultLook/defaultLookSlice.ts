@@ -74,7 +74,6 @@ export const fetchDefaultFilms = (genreId?: string): AppThunk => async (
 ) => {
     try {
         dispatch(getDefaultFilms())
-        console.log(genreId)
         const response = await fetch(`http://localhost:8001/${genreId}`)
 
         const listOfFilms = await response.json()

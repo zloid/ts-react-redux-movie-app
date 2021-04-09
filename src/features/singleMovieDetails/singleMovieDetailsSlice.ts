@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk, RootState } from '../../app/store'
 
-const apiMovieByGenre: Array<{
+export const apiMovieByGenre: Array<{
     id: number
     poster_path: string
     adult: boolean

@@ -3,7 +3,7 @@ import { AppThunk, RootState } from '../../app/store'
 
 const apiMovieByName: Array<{
     id: number
-    poster_path?: string
+    poster_path: string
     adult: boolean
     backdrop_path: string
     genre_ids: number[]

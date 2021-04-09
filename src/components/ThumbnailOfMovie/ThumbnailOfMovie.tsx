@@ -7,13 +7,21 @@ import {
 import { useDispatch } from 'react-redux'
 import { MoreInfo, Info } from './style'
 
-export const ThumbnailOfMovie: React.FC<{
+type PropsOfThumbnail = {
     thumbnail: string
     alt: string
     id: number
     overview: string
     vote_average: number
-}> = ({ thumbnail, alt, id, overview, vote_average }) => {
+}
+
+export const ThumbnailOfMovie: React.FC<PropsOfThumbnail> = ({
+    thumbnail,
+    alt,
+    id,
+    overview,
+    vote_average,
+}) => {
     const dispatch = useDispatch()
 
     return (
@@ -70,4 +78,27 @@ export const ThumbnailOfMovie: React.FC<{
             </Info>
         </span>
     )
+}
+
+export const useMappedThumbnailOfMovie = (
+    movieItem: {
+        id: number
+        poster_path: string
+        original_title: string
+        overview: string
+        vote_average: number
+    }[],
+    defaultPicPath: string
+) => {
+    const allPosters = movieItem.map((poster) => (
+        <ThumbnailOfMovie
+            key={poster.id}
+            thumbnail={defaultPicPath + poster.poster_path}
+            alt={poster.original_title}
+            id={poster.id}
+            overview={poster.overview}
+            vote_average={poster.vote_average}
+        />
+    ))
+    return allPosters
 }

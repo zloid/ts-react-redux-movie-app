@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { ThumbnailOfMovie } from '../ThumbnailOfMovie/ThumbnailOfMovie'
+import {
+    ThumbnailOfMovie,
+    useMappedThumbnailOfMovie,
+} from '../ThumbnailOfMovie/ThumbnailOfMovie'
 
 import {
     fetchMoviesBySearchBox,
@@ -21,7 +24,7 @@ export const SearchBox: React.FC = () => {
         dispatch(fetchMoviesBySearchBox(locationSearch))
     }, [])
 
-    const allPosters = moviesBySearchBoxData.map((poster) => (
+    /* const allPosters = moviesBySearchBoxData.map((poster) => (
         <ThumbnailOfMovie
             key={poster.id}
             thumbnail={defaultPathToPic + poster.poster_path}
@@ -30,7 +33,12 @@ export const SearchBox: React.FC = () => {
             overview={poster.overview}
             vote_average={poster.vote_average}
         />
-    ))
+    )) */
+
+    const allPosters = useMappedThumbnailOfMovie(
+        moviesBySearchBoxData,
+        defaultPathToPic
+    )
 
     return (
         <>
