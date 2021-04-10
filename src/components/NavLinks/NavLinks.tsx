@@ -8,7 +8,7 @@ export const NavLinks: React.FC = () => {
     const dispatch = useDispatch()
 
     return (
-        <span onClick={() => dispatch(closeBurgerMenu())}>
+        <div onClick={() => dispatch(closeBurgerMenu())}>
             <NavLink to="/actions">
                 <StyledLink>Action</StyledLink>
             </NavLink>
@@ -18,9 +18,18 @@ export const NavLinks: React.FC = () => {
             <NavLink to="/test">
                 <StyledLink>test</StyledLink>
             </NavLink>
-            <NavLink to="/test-2    ">
-                <StyledLink>test-2 </StyledLink>
+            <NavLink to="/test">
+                <StyledLink>test</StyledLink>
             </NavLink>
-        </span>
+            <NavLink to="/test">
+                <StyledLink>test</StyledLink>
+            </NavLink>
+            <NavLink to="/test">
+                <StyledLink>test</StyledLink>
+            </NavLink>
+            <NavLink to="/test">
+                <StyledLink>test</StyledLink>
+            </NavLink>
+        </div>
     )
 }

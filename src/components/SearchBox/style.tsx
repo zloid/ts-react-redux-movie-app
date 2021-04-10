@@ -5,3 +5,9 @@ export const StyledSearch = styled.input`
     padding: 8px;
     margin: 10px 10px 10px 0;
 `
+
+export const SpinnerWrap = styled.span`
+    position: absolute;
+    margin-left: 270px;
+    margin-top: -50px;
+`

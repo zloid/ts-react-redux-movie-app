@@ -47,13 +47,15 @@ export const HidingNavLink = styled.span`
 export const StyledLink = styled.span`
     font-weight: bold;
     color: #fff;
-    margin-left: 20px;
+    margin-left: 10px;
     padding: 4px;
     border: 1px solid tomato;
     border-radius: 4px;
 
     @media (max-width: 990px) {
         border: 1px solid papayawhip;
+        display: inline-block;
+        margin: 10px;
     }
 `
 

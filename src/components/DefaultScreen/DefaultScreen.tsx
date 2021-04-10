@@ -12,7 +12,7 @@ export const DefaultScreen: React.FC = () => {
 
     return (
         <>
-            <h1>Choose default movie or find your favorite</h1>
+            <h1>Choose movie or find favorite</h1>
             <MovieItemsByGenre />
         </>
     )

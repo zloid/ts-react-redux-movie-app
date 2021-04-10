@@ -83,3 +83,6 @@ export const selectmoviesBySearchBoxData = (state: RootState) =>
 
 export const selectDefaultPathToPic = (state: RootState) =>
     state.searchBoxReducer.picStorageDefaultPath
+
+export const selectIsMoviesBySearchBoxLoading = (state: RootState) =>
+    state.searchBoxReducer.isMoviesBySearchBoxLoading

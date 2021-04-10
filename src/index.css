@@ -58,10 +58,10 @@ body {
     /* background: #373a47; */
     /* background: #ff473a; */
     background: tomato;
-    padding: 2.5em 1.5em 0;
+    /* padding: 2.5em 1.5em 0; */
     font-size: 1.15em;
     padding-top: 5px;
-    /* box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25); */
+    box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
 }
 
 .bm-menu a {
