@@ -1,11 +1,13 @@
 import React from 'react'
 import { Image, Button, Badge, OverlayTrigger, Tooltip } from 'react-bootstrap'
-import {
-    getIdOfMovie,
-    fetchDefaultFilms,
-} from '../../features/singleMovieDetails/singleMovieDetailsSlice'
-import { useDispatch } from 'react-redux'
-import { MoreInfo, Info } from './style'
+//todo?
+// import {
+//     getIdOfMovie,
+//     fetchDefaultFilms,
+// } from '../../features/singleMovieDetails/singleMovieDetailsSlice'
+// import { useDispatch } from 'react-redux'
+import { MoreInfo, Info, TooltipBadgeWrapper } from './style'
+import imgMissing from '../../assets/missing.jpg'
 
 type PropsOfThumbnail = {
     thumbnail: string
@@ -22,17 +24,13 @@ export const ThumbnailOfMovie: React.FC<PropsOfThumbnail> = ({
     overview,
     vote_average,
 }) => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     return (
         <span>
             <a href={`movie-more-info?id:${id}`}>
                 <Image
-                    src={
-                        /null/gi.test(thumbnail)
-                            ? 'https://topmeaning.com/english/images/img/EN/m/missing.jpg'
-                            : thumbnail
-                    }
+                    src={/null/gi.test(thumbnail) ? imgMissing : thumbnail}
                     alt={alt}
                     width="150"
                     thumbnail={true}
@@ -53,24 +51,27 @@ export const ThumbnailOfMovie: React.FC<PropsOfThumbnail> = ({
                             id="tooltip-disabled"
                             style={{ backgroundColor: 'tomato' }}
                         >
-                            <Badge variant="success">title </Badge> {alt}
-                            <br />
-                            <Badge variant="warning">rating </Badge>{' '}
-                            {vote_average}
-                            <br />
-                            <br />
-                            <Badge variant="primary">overview </Badge>{' '}
-                            {overview}
-                            <br />
+                            <TooltipBadgeWrapper>
+                                <Badge variant="success">title </Badge> {alt}
+                            </TooltipBadgeWrapper>
+                            <TooltipBadgeWrapper>
+                                <Badge variant="warning">rating </Badge>{' '}
+                                {vote_average !== 0 ? vote_average : 'unknown'}
+                            </TooltipBadgeWrapper>
+                            <TooltipBadgeWrapper>
+                                <Badge variant="primary">overview </Badge>{' '}
+                                {overview}
+                            </TooltipBadgeWrapper>
                         </Tooltip>
                     }
                 >
                     <Badge
                         variant="warning"
-                        onClick={() => {
-                            dispatch(getIdOfMovie(id))
-                            dispatch(fetchDefaultFilms(id))
-                        }}
+                        //todo?
+                        // onClick={() => {
+                        //     dispatch(getIdOfMovie(id))
+                        //     dispatch(fetchDefaultFilms(id))
+                        // }}
                     >
                         info
                     </Badge>

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk, RootState } from '../../app/store'
+import { KEY } from '../../api/api'
 
 const apiMovieById: {
     adult?: boolean
@@ -22,7 +23,7 @@ const apiMovieById: {
     original_title?: string
     overview?: string
     popularity?: number
-    poster_path?: string
+    poster_path?: string | null
     production_companies?: {
         id: number
         logo_path: string | null
@@ -111,13 +112,18 @@ export const fetchMovieMoreInfo = (movieId?: string): AppThunk => async (
 ) => {
     try {
         dispatch(getMovieMoreInfo())
-        const response = await fetch(`http://localhost:8001/someMovieMoreInfo`)
+        // const response = await fetch(`http://localhost:8001/someMovieMoreInfo`)
+        const response = await fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${KEY}&append_to_response=credits`
+        )
 
         const listOfFilms = await response.json()
 
+        console.log('listOfFilms: ', listOfFilms)
+
         dispatch(getMovieMoreInfoSuccess(listOfFilms))
 
-        console.log('movieId: ', movieId)
+        console.log('listOfFilms.results: ', listOfFilms.results)
     } catch (error) {
         dispatch(getMovieMoreInfoFailure())
         alert('Please reload page! ' + error)

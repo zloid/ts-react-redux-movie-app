@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk, RootState } from '../../app/store'
+import { KEY } from '../../api/api'
 
 const apiMovieByName: Array<{
     id: number
@@ -66,7 +67,7 @@ export const fetchMoviesBySearchBox = (movieName?: string): AppThunk => async (
         dispatch(getMoviesBySearchBox())
         // const response = await fetch(`http://localhost:8001/${movieName}`)
         const response = await fetch(
-            `https://api.themoviedb.org/3/search/movie?api_key=155b8f9790c94cbc9f913b7abba927d2&language=en-US&page=1&include_adult=false&query=${movieName}`
+            `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&page=1&include_adult=false&query=${movieName}`
         )
 
         const listOfFilms = await response.json()

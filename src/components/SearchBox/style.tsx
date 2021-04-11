@@ -9,5 +9,5 @@ export const StyledSearch = styled.input`
 export const SpinnerWrap = styled.span`
     position: absolute;
     margin-left: 270px;
-    margin-top: -50px;
+    margin-top: -45px;
 `
