@@ -1,7 +1,3 @@
-// https://api.themoviedb.org/3/search/movie?api_key=9fc6ba08b528d3d577aa1a16484652de&language=en-US&page=1&include_adult=true&query=alien
-
-// https://image.tmdb.org/t/p/w342/zecMELPbU5YMQpC81Z8ImaaXuf9.jpg
-
 export const API = {
     page: 1,
     results: [
@@ -355,7 +351,7 @@ export const KEY = '155b8f9790c94cbc9f913b7abba927d2'
 export const GENRE = {
     action: 28,
     animated: 16,
-    documentary: 99,
+    // documentary: 99,
     drama: 18,
     family: 10751,
     fantasy: 14,
@@ -365,10 +361,10 @@ export const GENRE = {
     crime: 80,
     music: 10402,
     mystery: 9648,
-    romance: 10749,
+    // romance: 10749,
     sciFi: 878,
     horror: 27,
-    tvMovie: 10770,
+    // tvMovie: 10770,
     thriller: 53,
     western: 37,
     adventure: 12,

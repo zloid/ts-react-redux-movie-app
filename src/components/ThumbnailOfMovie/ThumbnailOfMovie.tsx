@@ -32,7 +32,7 @@ export const ThumbnailOfMovie: React.FC<PropsOfThumbnail> = ({
                 <Image
                     src={/null/gi.test(thumbnail) ? imgMissing : thumbnail}
                     alt={alt}
-                    width="150"
+                    width="160"
                     thumbnail={true}
                 />
 

@@ -22,8 +22,6 @@ export const MainNavbar: React.FC = () => {
                     </StyledBrand>
                 </Navbar.Brand>
 
-                {/* <PageName>pageNameMovie</PageName> */}
-
                 {/* BURGER MENU */}
                 <ToggleWrapper>
                     <Navbar.Toggle
@@ -34,7 +32,6 @@ export const MainNavbar: React.FC = () => {
                 <MobileBurgerMenu />
 
                 <HidingNavLink>
-                    {/* <Nav className="mr-auto">  */}
                     <NavLinks />
                 </HidingNavLink>
             </Navbar>
