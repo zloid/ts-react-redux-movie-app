@@ -1,11 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { openCloseBurgerMenu } from '../../features/defaultLook/defaultLookSlice'
-
 import { Navbar } from 'react-bootstrap'
-
 import { MobileBurgerMenu } from '../MobileBurgerMenu/MobileBurgerMenu'
-
 import { StyledBrand, HidingNavLink, ToggleWrapper } from './style'
 import { NavLinks } from '../NavLinks/NavLinks'
 

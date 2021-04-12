@@ -15,21 +15,6 @@ export const NavLinks: React.FC = () => {
             <NavLink to="/animation">
                 <StyledLink>Animation</StyledLink>
             </NavLink>
-            <NavLink to="/test">
-                <StyledLink>test</StyledLink>
-            </NavLink>
-            <NavLink to="/test">
-                <StyledLink>test</StyledLink>
-            </NavLink>
-            <NavLink to="/test">
-                <StyledLink>test</StyledLink>
-            </NavLink>
-            <NavLink to="/test">
-                <StyledLink>test</StyledLink>
-            </NavLink>
-            <NavLink to="/test">
-                <StyledLink>test</StyledLink>
-            </NavLink>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk, RootState } from '../../app/store'
+import { KEY } from '../../api/api'
 
 const apiMovieByGenre: Array<{
     id: number
@@ -69,16 +70,19 @@ export const {
 
 export default defaulLookSlice.reducer
 
-export const fetchDefaultFilms = (genreId?: string): AppThunk => async (
+export const fetchDefaultFilms = (genreId: number): AppThunk => async (
     dispatch
 ) => {
     try {
         dispatch(getDefaultFilms())
-        const response = await fetch(`http://localhost:8001/${genreId}`)
+        // const response = await fetch(`http://localhost:8001/${genreId}`)
+        const response = await fetch(
+            `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genreId}`
+        )
 
         const listOfFilms = await response.json()
 
-        dispatch(getDefaultFilmsSuccess(listOfFilms))
+        dispatch(getDefaultFilmsSuccess(listOfFilms.results))
     } catch (error) {
         dispatch(getDefaultFilmsFailure())
         alert('Please reload page! ' + error)

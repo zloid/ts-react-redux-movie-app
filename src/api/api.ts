@@ -351,3 +351,25 @@ export const API = {
 }
 
 export const KEY = '155b8f9790c94cbc9f913b7abba927d2'
+
+export const GENRE = {
+    action: 28,
+    animated: 16,
+    documentary: 99,
+    drama: 18,
+    family: 10751,
+    fantasy: 14,
+    history: 36,
+    comedy: 35,
+    war: 10752,
+    crime: 80,
+    music: 10402,
+    mystery: 9648,
+    romance: 10749,
+    sciFi: 878,
+    horror: 27,
+    tvMovie: 10770,
+    thriller: 53,
+    western: 37,
+    adventure: 12,
+}

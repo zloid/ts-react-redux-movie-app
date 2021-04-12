@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Badge, Spinner } from 'react-bootstrap'
-// import imgMissing from '../../assets/missing.jpg'
 import noImage from '../../assets/no-image-available.jpg'
+import blackPic from '../../assets/blackPic.jpg'
 
 import {
     fetchMovieMoreInfo,
@@ -23,29 +23,38 @@ export const MovieMoreInfo: React.FC = () => {
 
     const castOfMovie = movieMoreInfoData?.credits?.cast.map((castItem) => (
         /* castItem.profile_path && */ <Col key={castItem.id}>
-            {
-                <div>
-                    <Badge pill variant="light">
-                        {castItem.name}
-                    </Badge>
-                </div>
-            }
-            <img
-                key={castItem.cast_id}
-                // src={defaultPathToPic + castItem.profile_path}
-                src={
-                    castItem.profile_path !== null
-                        ? `${defaultPathToPic + castItem.profile_path}`
-                        : `${noImage}`
-                }
+            <div
                 style={{
-                    width: '120px',
-                    height: '120px',
-                    marginBottom: '20px',
-                    borderRadius: '50%',
-                    objectFit: 'cover',
+                    fontSize: '20px',
+                    marginBottom: '10px',
+                    textAlign: 'center',
                 }}
-            ></img>
+            >
+                <Badge pill variant="light">
+                    {castItem.name} as role{' '}
+                    <Badge pill variant="primary">
+                        {castItem.character}
+                    </Badge>
+                </Badge>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+                <img
+                    key={castItem.cast_id}
+                    // src={defaultPathToPic + castItem.profile_path}
+                    src={
+                        castItem.profile_path !== null
+                            ? `${defaultPathToPic + castItem.profile_path}`
+                            : `${noImage}`
+                    }
+                    style={{
+                        width: '120px',
+                        height: '120px',
+                        marginBottom: '20px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                    }}
+                ></img>
+            </div>
         </Col>
     ))
 
@@ -76,7 +85,7 @@ export const MovieMoreInfo: React.FC = () => {
                         src={
                             movieMoreInfoData.poster_path === null ||
                             movieMoreInfoData.poster_path === undefined
-                                ? noImage
+                                ? blackPic
                                 : defaultPathToPic +
                                   movieMoreInfoData.poster_path
                         }
@@ -157,7 +166,9 @@ export const MovieMoreInfo: React.FC = () => {
                                 <br />
                                 {movieMoreInfoData.tagline && (
                                     <Badge variant="success">
-                                        {movieMoreInfoData.tagline}
+                                        <span style={{ fontSize: '15px' }}>
+                                            {movieMoreInfoData.tagline}
+                                        </span>
                                     </Badge>
                                 )}
                             </Col>

@@ -45,12 +45,6 @@ const App: React.FC = () => {
                     <Route path="/info" component={MovieInfo} />
                     <Route path="/movie-more-info" component={MovieMoreInfo} />
                     <Route path="/search" component={SearchBox} />
-                    <Route path="/test">
-                        <DefaultGenreTab genre="actions" />
-                    </Route>
-                    <Route path="/test-2">
-                        <DefaultGenreTab genre="alien" />
-                    </Route>
                 </Switch>
             </Router>
         </Container>

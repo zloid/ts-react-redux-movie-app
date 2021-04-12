@@ -1,6 +1,6 @@
 {
   "name": "ts-react-three",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^4.2.4",

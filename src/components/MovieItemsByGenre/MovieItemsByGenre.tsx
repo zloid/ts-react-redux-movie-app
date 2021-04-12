@@ -5,10 +5,7 @@ import {
     selectDefaultPathToPic,
 } from '../../features/defaultLook/defaultLookSlice'
 
-import {
-    ThumbnailOfMovie,
-    useMappedThumbnailOfMovie,
-} from '../ThumbnailOfMovie/ThumbnailOfMovie'
+import { useMappedThumbnailOfMovie } from '../ThumbnailOfMovie/ThumbnailOfMovie'
 
 export const MovieItemsByGenre: React.FC = () => {
     const defaultFilmsData = useSelector(selectDefaultFilmsData)
@@ -18,15 +15,6 @@ export const MovieItemsByGenre: React.FC = () => {
         defaultFilmsData,
         picStorageDefaultPath
     )
-    /* defaultFilmsData.map((poster) => (
-        <ThumbnailOfMovie
-            key={poster.id}
-            thumbnail={picStorageDefaultPath + poster.poster_path}
-            alt={poster.original_title}
-            id={poster.id}
-            overview={poster.overview}
-            vote_average={poster.vote_average}
-        />
-    )) */
+
     return <>{allPosters}</>
 }

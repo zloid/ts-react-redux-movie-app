@@ -2,10 +2,11 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchDefaultFilms } from '../../features/defaultLook/defaultLookSlice'
 import { MovieItemsByGenre } from '../MovieItemsByGenre/MovieItemsByGenre'
+import { GENRE } from '../../api/api'
 
 export const DefaultScreen: React.FC = () => {
     useEffect(() => {
-        dispatch(fetchDefaultFilms('alien'))
+        dispatch(fetchDefaultFilms(GENRE.family))
     }, [])
 
     const dispatch = useDispatch()
