@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledBrand = styled.div`
     width: 50px;
     height: 41px;
-    left: 12px;
+    margin-left: -12px;
     top: calc(50% - 41px / 2);
     font-family: Montserrat;
     font-style: normal;

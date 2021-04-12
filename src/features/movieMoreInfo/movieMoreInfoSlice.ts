@@ -63,6 +63,19 @@ const apiMovieById: {
             credit_id: string
             order: number
         }[]
+        crew: {
+            adult: boolean
+            credit_id: string
+            department: string
+            gender: number
+            id: number
+            job: string
+            known_for_department: string
+            name: string
+            original_name: string
+            popularity: number
+            profile_path: null
+        }[]
     }
 } = {}
 
@@ -135,3 +148,6 @@ export const selectmovieMoreInfoData = (state: RootState) =>
 
 export const selectDefaultPathToPic = (state: RootState) =>
     state.movieMoreInfoReducer.picStorageDefaultPath
+
+export const selectIsMovieMoreInfoLoading = (state: RootState) =>
+    state.movieMoreInfoReducer.isMovieMoreInfoLoading
