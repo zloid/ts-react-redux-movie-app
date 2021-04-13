@@ -10,7 +10,7 @@ export const ActionTab: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchDefaultFilms(GENRE.action))
-    }, [])
+    })
 
     const preparedLocation = useLocationPathname()
 

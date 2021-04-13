@@ -10,7 +10,7 @@ export const WesternTab: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchDefaultFilms(GENRE.western))
-    }, [])
+    })
 
     const preparedLocation = useLocationPathname()
 

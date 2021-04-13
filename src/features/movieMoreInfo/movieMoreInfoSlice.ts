@@ -59,7 +59,7 @@ const apiMovieById: {
             popularity: number
             profile_path: string
             cast_id: number
-            character: string
+            character: string | null
             credit_id: string
             order: number
         }[]
@@ -132,11 +132,7 @@ export const fetchMovieMoreInfo = (movieId?: string): AppThunk => async (
 
         const listOfFilms = await response.json()
 
-        console.log('listOfFilms: ', listOfFilms)
-
         dispatch(getMovieMoreInfoSuccess(listOfFilms))
-
-        console.log('listOfFilms.results: ', listOfFilms.results)
     } catch (error) {
         dispatch(getMovieMoreInfoFailure())
         alert('Please reload page! ' + error)

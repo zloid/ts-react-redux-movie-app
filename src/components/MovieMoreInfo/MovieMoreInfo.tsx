@@ -22,7 +22,9 @@ export const MovieMoreInfo: React.FC = () => {
     const locationSearch = location.search.split(':')[1]
 
     const castOfMovie = movieMoreInfoData?.credits?.cast.map((castItem) => (
-        /* castItem.profile_path && */ <Col key={castItem.id}>
+        /* castItem.profile_path && */ <Col
+            key={castItem.id + castItem.cast_id}
+        >
             <div
                 style={{
                     fontSize: '20px',
@@ -31,7 +33,10 @@ export const MovieMoreInfo: React.FC = () => {
                 }}
             >
                 <Badge pill variant="light">
-                    {castItem.name} as role{' '}
+                    {castItem.name}{' '}
+                    {castItem.character !== '' &&
+                        castItem.character !== null &&
+                        'as role'}{' '}
                     <Badge pill variant="primary">
                         {castItem.character}
                     </Badge>
@@ -40,7 +45,7 @@ export const MovieMoreInfo: React.FC = () => {
             <div style={{ textAlign: 'center' }}>
                 <img
                     key={castItem.cast_id}
-                    // src={defaultPathToPic + castItem.profile_path}
+                    alt={castItem.name}
                     src={
                         castItem.profile_path !== null
                             ? `${defaultPathToPic + castItem.profile_path}`
@@ -83,11 +88,13 @@ export const MovieMoreInfo: React.FC = () => {
                     <img
                         className="img-fluid"
                         src={
-                            movieMoreInfoData.poster_path === null ||
-                            movieMoreInfoData.poster_path === undefined
-                                ? blackPic
-                                : defaultPathToPic +
-                                  movieMoreInfoData.poster_path
+                            {
+                                [`${'string'}`]:
+                                    defaultPathToPic +
+                                    movieMoreInfoData.poster_path,
+                                [`${'object'}`]: noImage,
+                                [`${'undefined'}`]: blackPic,
+                            }[typeof movieMoreInfoData.poster_path]
                         }
                         alt={`poster pic of ${movieMoreInfoData.original_title}`}
                         style={{ borderRadius: '5px' }}
@@ -105,6 +112,7 @@ export const MovieMoreInfo: React.FC = () => {
                                     )}
                                     <a
                                         target="_blank"
+                                        rel="noreferrer"
                                         href={`https://www.imdb.com/title/${movieMoreInfoData.imdb_id}/`}
                                         style={{ textDecoration: 'underline' }}
                                     >

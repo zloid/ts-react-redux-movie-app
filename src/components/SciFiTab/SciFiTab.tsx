@@ -10,7 +10,7 @@ export const SciFiTab: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchDefaultFilms(GENRE.sciFi))
-    }, [])
+    })
 
     const preparedLocation = useLocationPathname()
 

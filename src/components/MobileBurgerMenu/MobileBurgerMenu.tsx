@@ -16,9 +16,6 @@ export const MobileBurgerMenu: React.FC = () => {
     return (
         <>
             <Menu
-                // onStateChange={true}
-                // styles={'4px 0px 4px rgba(0, 0, 0, 0.25)'}
-                // disableOverlayClick={true}
                 isOpen={isBurgerMenuOpen}
                 onClose={() => dispatch(openCloseBurgerMenu())}
                 width={'300px'}

@@ -8,7 +8,7 @@ import { GENRE } from '../../api/api'
 export const AnimationTab: React.FC = () => {
     useEffect(() => {
         dispatch(fetchDefaultFilms(GENRE.animated))
-    }, [])
+    })
 
     const dispatch = useDispatch()
 

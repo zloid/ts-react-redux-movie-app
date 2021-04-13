@@ -10,7 +10,7 @@ export const MusicTab: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchDefaultFilms(GENRE.music))
-    }, [])
+    })
 
     const preparedLocation = useLocationPathname()
 

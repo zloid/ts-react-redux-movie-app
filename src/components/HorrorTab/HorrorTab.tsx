@@ -10,7 +10,7 @@ export const HorrorTab: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchDefaultFilms(GENRE.horror))
-    }, [])
+    })
 
     const preparedLocation = useLocationPathname()
 

@@ -10,7 +10,7 @@ export const HistoryTab: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchDefaultFilms(GENRE.history))
-    }, [])
+    })
 
     const preparedLocation = useLocationPathname()
 

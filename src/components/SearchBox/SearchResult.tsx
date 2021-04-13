@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Spinner } from 'react-bootstrap'
 import { SpinnerWrap } from './style'
 
-import {
-    // ThumbnailOfMovie,
-    useMappedThumbnailOfMovie,
-} from '../ThumbnailOfMovie/ThumbnailOfMovie'
+import { useMappedThumbnailOfMovie } from '../ThumbnailOfMovie/ThumbnailOfMovie'
 
 import {
     fetchMoviesBySearchBox,
@@ -30,17 +27,6 @@ export const SearchBox: React.FC = () => {
     useEffect(() => {
         dispatch(fetchMoviesBySearchBox(locationSearch))
     }, [])
-
-    /* const allPosters = moviesBySearchBoxData.map((poster) => (
-        <ThumbnailOfMovie
-            key={poster.id}
-            thumbnail={defaultPathToPic + poster.poster_path}
-            alt={poster.original_title}
-            id={poster.id}
-            overview={poster.overview}
-            vote_average={poster.vote_average}
-        />
-    )) */
 
     const allPosters = useMappedThumbnailOfMovie(
         moviesBySearchBoxData,

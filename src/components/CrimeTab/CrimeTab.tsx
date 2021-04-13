@@ -10,7 +10,7 @@ export const CrimeTab: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchDefaultFilms(GENRE.crime))
-    }, [])
+    })
 
     const preparedLocation = useLocationPathname()
 

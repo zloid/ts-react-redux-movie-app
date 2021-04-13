@@ -8,6 +8,6 @@ export const StyledSearch = styled.input`
 
 export const SpinnerWrap = styled.span`
     position: absolute;
-    margin-left: 270px;
-    margin-top: -45px;
+    margin-left: 290px;
+    margin-top: -48px;
 `
