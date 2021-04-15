@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Badge, Spinner } from 'react-bootstrap'
+import { SloganOfMovie } from './style'
 import noImage from '../../assets/no-image-available.jpg'
-import blackPic from '../../assets/blackPic.jpg'
+// import blackPic from '../../assets/blackPic.jpg'
+import catSpinner from '../../assets/catSpinner.gif'
 
 import {
     fetchMovieMoreInfo,
@@ -21,9 +23,9 @@ export const MovieMoreInfo: React.FC = () => {
     const location = useLocation()
     const locationSearch = location.search.split(':')[1]
 
-    const castOfMovie = movieMoreInfoData?.credits?.cast.map((castItem) => (
+    const castOfMovie = movieMoreInfoData?.credits?.cast.map((castItem, i) => (
         /* castItem.profile_path && */ <Col
-            key={castItem.id + castItem.cast_id}
+            key={i + castItem.id + castItem.cast_id}
         >
             <div
                 style={{
@@ -93,7 +95,8 @@ export const MovieMoreInfo: React.FC = () => {
                                     defaultPathToPic +
                                     movieMoreInfoData.poster_path,
                                 [`${'object'}`]: noImage,
-                                [`${'undefined'}`]: blackPic,
+                                // [`${'undefined'}`]: blackPic,
+                                [`${'undefined'}`]: catSpinner,
                             }[typeof movieMoreInfoData.poster_path]
                         }
                         alt={`poster pic of ${movieMoreInfoData.original_title}`}
@@ -170,14 +173,15 @@ export const MovieMoreInfo: React.FC = () => {
                                     alt={`backdrop pic of ${movieMoreInfoData.original_title}`}
                                     style={{ borderRadius: '10px' }}
                                 />
-                                <br />
-                                <br />
+
                                 {movieMoreInfoData.tagline && (
-                                    <Badge variant="success">
-                                        <span style={{ fontSize: '15px' }}>
-                                            {movieMoreInfoData.tagline}
-                                        </span>
-                                    </Badge>
+                                    <Row>
+                                        <Col>
+                                            <SloganOfMovie>
+                                                “{movieMoreInfoData.tagline}”
+                                            </SloganOfMovie>
+                                        </Col>
+                                    </Row>
                                 )}
                             </Col>
                         </Row>

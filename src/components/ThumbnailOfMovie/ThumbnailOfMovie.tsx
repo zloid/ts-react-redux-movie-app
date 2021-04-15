@@ -6,7 +6,13 @@ import { Image, Button, Badge, OverlayTrigger, Tooltip } from 'react-bootstrap'
 //     fetchDefaultFilms,
 // } from '../../features/singleMovieDetails/singleMovieDetailsSlice'
 // import { useDispatch } from 'react-redux'
-import { MoreInfo, Info, TooltipBadgeWrapper } from './style'
+import {
+    MoreInfo,
+    Info,
+    InfoMobile,
+    InfoNotMobile,
+    TooltipBadgeWrapper,
+} from './style'
 import imgMissing from '../../assets/missing.jpg'
 
 type PropsOfThumbnail = {
@@ -65,16 +71,26 @@ export const ThumbnailOfMovie: React.FC<PropsOfThumbnail> = ({
                         </Tooltip>
                     }
                 >
-                    <Badge
-                        variant="warning"
-                        //todo?
-                        // onClick={() => {
-                        //     dispatch(getIdOfMovie(id))
-                        //     dispatch(fetchDefaultFilms(id))
-                        // }}
-                    >
-                        info
-                    </Badge>
+                    <span>
+                        <InfoNotMobile>
+                            <Badge
+                                variant="warning"
+                                //todo?
+                                // onClick={() => {
+                                //     dispatch(getIdOfMovie(id))
+                                //     dispatch(fetchDefaultFilms(id))
+                                // }}
+                            >
+                                info
+                            </Badge>
+                        </InfoNotMobile>
+                        <InfoMobile>
+                            <div style={{ paddingTop: '4px' }}></div>
+                            <Button size="sm" variant="warning">
+                                <strong>info</strong>
+                            </Button>
+                        </InfoMobile>
+                    </span>
                 </OverlayTrigger>
             </Info>
         </span>
